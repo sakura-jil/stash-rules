@@ -1,48 +1,40 @@
-# ==============================
-# Stash / Clash 完整配置示例
-# ==============================
+#!name=新加坡IEPL01分流（常用网站版）
+#!desc=常用网站 + Google/YouTube/Telegram/GPT 都走新加坡IEPL01，其余走直连
 
-# 1️⃣ 策略组定义
-proxy-groups:
-  - name: 新加坡
-    type: select
-    proxies:
-      - 🇸🇬|新加坡-IEPL 01
-      - 🇸🇬|新加坡-IEPL 02
-      - 🇸🇬|新加坡-IEPL 03
-      - 🇸🇬|新加坡-进阶IEPL 01
-      - 🇸🇬|新加坡-进阶IEPL 02
-      - 🇸🇬|新加坡-进阶IEPL 03
-      - 🇸🇬|新加坡-进阶IEPL 04
-      - 🇸🇬|新加坡-直连
-      - 🇸🇬|新加坡-中转 01
-      - 🇸🇬|新加坡-中转 02
-      - 🇸🇬|新加坡-中转 03
-      - 🇸🇬|新加坡-中转 04
+[Proxy Group]
+新加坡 = select, 🇸🇬|新加坡-IEPL 01
+默认直连 = direct
 
-  - name: 默认直连
-    type: select
-    proxies:
-      - DIRECT
+[Rule]
+# Google
+DOMAIN-SUFFIX,google.com,新加坡
+DOMAIN-SUFFIX,googleapis.com,新加坡
+DOMAIN-SUFFIX,gstatic.com,新加坡
+DOMAIN-SUFFIX,ggpht.com,新加坡
 
-# 2️⃣ 流量规则
-rules:
-  # Google
-  - DOMAIN-SUFFIX,google.com,新加坡
-  - DOMAIN-SUFFIX,googleapis.com,新加坡
-  - DOMAIN-SUFFIX,gstatic.com,新加坡
+# YouTube
+DOMAIN-SUFFIX,youtube.com,新加坡
+DOMAIN-SUFFIX,ytimg.com,新加坡
 
-  # YouTube
-  - DOMAIN-SUFFIX,youtube.com,新加坡
-  - DOMAIN-SUFFIX,ytimg.com,新加坡
+# Telegram
+DOMAIN-SUFFIX,telegram.org,新加坡
+DOMAIN-SUFFIX,t.me,新加坡
 
-  # Telegram
-  - DOMAIN-SUFFIX,telegram.org,新加坡
-  - DOMAIN-SUFFIX,t.me,新加坡
+# ChatGPT / OpenAI
+DOMAIN-SUFFIX,openai.com,新加坡
+DOMAIN-SUFFIX,chatgpt.com,新加坡
 
-  # ChatGPT / OpenAI
-  - DOMAIN-SUFFIX,openai.com,新加坡
-  - DOMAIN-SUFFIX,chatgpt.com,新加坡
+# 常用网站
+DOMAIN-SUFFIX,facebook.com,新加坡
+DOMAIN-SUFFIX,instagram.com,新加坡
+DOMAIN-SUFFIX,twitter.com,新加坡
+DOMAIN-SUFFIX,netflix.com,新加坡
+DOMAIN-SUFFIX,linkedin.com,新加坡
+DOMAIN-SUFFIX,reddit.com,新加坡
+DOMAIN-SUFFIX,discord.com,新加坡
+DOMAIN-SUFFIX,wikipedia.org,新加坡
+DOMAIN-SUFFIX,amazon.com,新加坡
+DOMAIN-SUFFIX,github.com,新加坡
 
-  # 兜底规则，所有其他流量直连
-  - FINAL,默认直连
+# 兜底规则
+FINAL,默认直连
